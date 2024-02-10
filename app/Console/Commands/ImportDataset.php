@@ -18,7 +18,7 @@ class ImportDataset extends Command
      *
      * @var string
      */
-    protected $signature = 'import:dataset {path}';
+    protected $signature = 'import:employees {path : The path to the CSV file.}';
 
     /**
      * The console command description.
@@ -26,17 +26,6 @@ class ImportDataset extends Command
      * @var string
      */
     protected $description = 'Import employee dataset from CSV file to database.';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-    }
 
     /**
      * Execute the console command.
@@ -122,5 +111,6 @@ class ImportDataset extends Command
         $this->info("\nDataset imported successfully.");
         $m2 = memory_get_usage();
         $this->info('Memory usage: ' . round(($m2 - $m1) / 1024 / 1024, 2) . ' MB');
+        return 0;
     }
 }

@@ -13,6 +13,24 @@ services:
             - ./docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
         networks:
             - app-network
+    webserver:
+        image: nginx:alpine
+        container_name: webserver
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./:/var/www/html/
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - app-network
+        environment:
+            - NGINX_HOST=localhost
+        depends_on:
+            - app
+            - db
     db:
         image: mysql:8.3.0
         command: --default-authentication-plugin=mysql_native_password
