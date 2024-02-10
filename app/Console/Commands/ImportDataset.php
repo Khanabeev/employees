@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Domain\Department\Models\Department;
-use League\Csv\Reader;
 use Domain\EmploymentType\Models\EmploymentType;
 use Domain\JobTitle\Models\JobTitle;
 use Illuminate\Console\Command;
